@@ -1,0 +1,107 @@
+<ngx-spinner type="square-loader">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active">Register User</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-lg-8">
+
+            <div *ngIf="errorMessage" class="card-body" 
+            style="color: rgb(255, 245, 245);
+            background-color: rgb(244, 111, 111);
+            margin-top: 10px;font-weight: 600;font-size: larger;">
+              {{ errorMessage }}
+            </div>
+            </div>
+
+            <form class="row g-3 ml-3" (ngSubmit)="register()" #registrationForm="ngForm">
+              <div class="col col-md-8">
+                <label class="form-label" for="username">User Name</label>
+                <input [(ngModel)]="users.username" name="username" class="form-control" required #username="ngModel"
+                  [class.is-invalid]="username.touched && username.invalid" />
+                <div *ngIf="username.errors && username.touched">
+                  <small class="text-danger" *ngIf="username.errors['required']">
+                    User name is required
+                  </small>
+                </div>
+              </div>
+
+              <div class="col col-md-8">
+                <label class="form-label" for="password">Password</label>
+                <input [(ngModel)]="users.password" name="password" class="form-control" required #password="ngModel"
+                  [class.is-invalid]="password.touched && password.invalid"
+                  (ngModelChange)="validatePasswordStrength()" />
+                <div *ngIf="password.errors && password.touched">
+                  <small class="text-danger" *ngIf="password.errors['required']">
+                    Password is required
+                  </small>
+                </div>
+                <div *ngIf="passwordStrengthMessage">
+                  <small class="text-danger">{{ passwordStrengthMessage }}</small>
+                </div>
+              </div>
+
+              <div class="col col-md-8">
+                <label class="form-label" for="retypePassword">Retype Password</label>
+                <input [(ngModel)]="users.retypePassword" name="retypePassword" class="form-control" required
+                  #retypePassword="ngModel" [class.is-invalid]="retypePassword.touched && retypePassword.invalid" />
+                <div *ngIf="retypePassword.errors && retypePassword.touched">
+                  <small class="text-danger" *ngIf="retypePassword.errors['required']">
+                    Please retype the password
+                  </small>
+                </div>
+              </div>
+
+              <div class="col col-md-8">
+                <label class="form-label" for="email">Email</label>
+                <input [(ngModel)]="users.email" name="email" type="email" class="form-control" required
+                  #email="ngModel" [class.is-invalid]="email.touched && email.invalid" />
+                <div *ngIf="email.errors && email.touched">
+                  <small class="text-danger" *ngIf="email.errors['required']">
+                    Email is required
+                  </small>
+                  <small class="text-danger" *ngIf="email.errors['email']">
+                    Invalid email format
+                  </small>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <strong class="text-warning"><sup>*</sup></strong>
+                <label class="form-label" for="Company">Role</label>
+                <select [(ngModel)]=" users.roleId" class="form-control" name="role" required
+                #role="ngModel" [class.is-invalid]="role.touched && role.invalid">
+                <div *ngIf="role.errors && role.touched">
+                  <small class="text-danger" *ngIf="role.errors['required']">
+                    please choose role
+                  </small>
+                  </div>
+                  <option *ngFor="let role of roles" [value]="role.id">
+                    {{role.name}}
+                  </option>
+                     
+                </select>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary"
+                  [disabled]="registrationForm.invalid || passwordStrengthMessage">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

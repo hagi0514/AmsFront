@@ -1,0 +1,78 @@
+<ngx-spinner type="square-loader">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active">Register Company</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <form class="row g-3 ml-3" (ngSubmit)="saveSamples()">
+              <div class="col col-md-8">
+                <label class="form-label">Company:</label>
+                <select (change)="onCompanyChange($event)" class="form-control" [(ngModel)]="selectedCompanyId" name="companyId">
+                  <option *ngFor="let company of companies" [value]="company.id">
+                    {{ company.name }}
+                  </option>
+                </select>
+              </div>
+              
+              <div class="col col-md-8">
+                <label class="form-label">Auction:</label>
+                <select class="form-control" [(ngModel)]="selectedAuctionId" name="auctionId">
+                  <option *ngFor="let auction of filteredAuctions" [value]="auction.id">{{ auction.auctionCode }}</option>
+                </select>
+              </div>
+
+              <div class="col col-md-8" *ngFor="let sample of sampleEntries; let i = index">
+                <div>
+                  <label>Sample Type:</label>
+                  <input class="form-control" [(ngModel)]="sample.sampleType" name="sampleType" placeholder="Enter sample type">
+                </div>
+                <div class="col col-md-8">
+                  <label>Price:</label>
+                  <input class="form-control" [(ngModel)]="sample.price" name="price" type="number" placeholder="Enter price">
+                </div>
+                <div class="col col-md-8">
+                  <label>DocumentPrice:</label>
+                  <input class="form-control" [(ngModel)]="sample.docPrice" name="docPrice" type="number" placeholder="Enter document price">
+                </div>
+                <div class="col col-md-8">
+                  <label>Credit Sample:</label>
+                  <select class="form-control" [(ngModel)]="sample.merchantReturnable" placeholder="is the sample on credit?" (change)="onMerchantReturnableChange($event)" name="merchantReturnable">
+                    <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+                  </select>
+                </div>
+                <div class="col col-md-8">
+                  <label *ngIf="isMurchantReturnable"> Return Status</label>
+                  <select class="form-control" *ngIf="isMurchantReturnable" [(ngModel)]="sample.returnStatus" name="returnStatus">
+                    <option *ngFor="let option of returnStatus" [value]="option.value">{{ option.label }}</option>
+                  </select>
+                </div>
+                <div class="col-md-12">
+                  <button class="btn btn-secondary" (click)="removeSampleEntry(i)">Remove Sample</button>
+                </div>
+              </div>
+              
+              <div class="col-md-12">
+                <button class="btn btn-primary" (click)="addNewSampleEntry()" type="button">Add Another Sample</button>
+                <button class="btn btn-success" type="submit">Save Samples</button>
+              </div>
+
+              <app-confirmation-dialog *ngIf="showConfirmationModal" (confirmed)="onConfirmation($event)">
+              </app-confirmation-dialog>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

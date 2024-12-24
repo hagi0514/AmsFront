@@ -1,0 +1,52 @@
+/* Sidebar Wrapper with Scroll */
+.sidebar{
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #639fed #f1f1f1; /* Firefox */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Logo image styles */
+.logo img {
+  display: block;
+  width: 100%;
+  max-height: 150px; /* Limits image size */
+  object-fit: cover;
+}
+
+/* Navigation Styles */
+.nav {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0 10px;
+}
+
+.nav-item {
+  margin-bottom: 10px;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px; /* Adjusted padding */
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.nav-item a:hover {
+  background-color: #096ae6; /* Hover color */
+  color: white;
+}
+
+.nav-item a.active {
+  background-color: #096ae6; /* Active state color */
+  color: white;
+}
+.dropdown .nav-link {
+  font-weight:500;
+}

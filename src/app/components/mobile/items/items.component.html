@@ -1,0 +1,14 @@
+<div>
+    <h1>Items</h1>
+    <form (submit)="addItem(itemName.value, itemDesc.value)">
+      <input #itemName type="text" placeholder="Name" required />
+      <input #itemDesc type="text" placeholder="Description" />
+      <button type="submit">Add Item</button>
+    </form>
+    <ul>
+      <li *ngFor="let item of items">
+        {{ item.name }}: {{ item.description }}
+      </li>
+    </ul>
+  </div>
+  

@@ -1,0 +1,15 @@
+<div class="notifications-container" *ngIf="!loading; else loadingTemplate">
+  <h2>Auction Notifications</h2>
+  
+  <div *ngFor="let notification of notifications" class="notification-card">
+    <h3>{{ notification.message }}</h3>
+    <div class="actions">
+      <button mat-button color="primary" (click)="markAsRead(notification.id)">Mark as Read</button>
+      <button mat-button color="warn" (click)="deleteNotification(notification.id)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <p>Loading notifications...</p>
+</ng-template>

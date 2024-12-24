@@ -1,0 +1,81 @@
+<ngx-spinner type="square-loader">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door"></i></a></li>
+                  <li class="breadcrumb-item active">Register Cpo</li>
+        </ol>
+      </nav>
+    </div>
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <form  class="row g-3 ml-3"  (ngSubmit)="saveCpo()">
+                <div class="col col-md-8">
+                  <strong class="text-warning"><sup>*</sup></strong>
+                    <label class="form-label" for="Company">company</label>
+                  <select [(ngModel)]="cpo.company" class="form-control" name="company">
+                    <option *ngFor="let companies of company" [value]="companies.id">
+                      {{companies.name}}
+                    </option>
+                  </select>                  
+           </div>
+
+
+                <div class="col col-md-8">
+                  <strong class="text-warning"><sup>*</sup></strong>
+                  <label class="form-label" for="cpoAmount">amount</label>
+                  <input [(ngModel)]="cpo.amount" name="amount" autocomplete="off"
+                  class="form-control" required #cpoAmount="ngModel"
+                    [class.is-invalid]="cpoAmount.touched && cpoAmount.invalid" />
+                  <div *ngIf="cpoAmount.errors && cpoAmount.touched">
+                    <small class="text-danger" *ngIf="cpoAmount.errors['required']">cpo amount is
+                      required</small>
+                  </div>
+                </div>
+                
+                <div class="col col-md-8">
+                  <strong class="text-warning"><sup>*</sup></strong>
+                  <label class="form-label" for="bankPayment">Bank payment</label>
+                  <input [(ngModel)]="cpo.issuing_payment" name="issuing_payment" autocomplete="off"
+                  class="form-control" required #bankPayment="ngModel"
+                    [class.is-invalid]="bankPayment.touched && bankPayment.invalid" />
+                  <div *ngIf="bankPayment.errors && bankPayment.touched">
+                    <small class="text-danger" *ngIf="bankPayment.errors['required']">Bank payment is
+                      required</small>
+                  </div>
+                </div>
+                
+             <div class="col col-md-8">
+              <strong class="text-warning"><sup>*</sup></strong>
+              <label for="bankName">Bank Name</label>
+            
+                <select [(ngModel)]="cpo.bank" class="form-control" name="bank">
+                  <option *ngFor="let option of options" [value]="option">
+                    {{option}}
+                  </option>
+                </select>
+                <p>You selected: {{cpo.bank}}</p>
+                
+</div>
+              
+                <div class="col-md-12">
+                  <div class="text-left">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+ 
+  

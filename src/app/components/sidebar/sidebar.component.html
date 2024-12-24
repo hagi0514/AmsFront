@@ -1,0 +1,235 @@
+<!-- Sidebar -->
+<div *ngIf="isLoggedIn" class="sidebar">
+    <div *ngIf="isLoggedIn" class="logo text-center">
+        <img src="/assets/img/Ams.PNG" alt="Logo">
+    </div>
+    <!-- Navigation Menu -->
+    <ul class="nav flex-column" *ngIf="userRole==='ADMIN'">
+        <!-- Dashboard Link -->
+        <li>
+            <button 
+                    class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center" >
+                <i class="bi bi-house-door-fill me-2"></i><a routerLink="/dashboard" style="font-size: larger; text-decoration: none;">DASHBOARD</a> 
+            </button>
+        </li>
+
+        <!-- User Management -->
+        <li class="nav-item">
+            <button (click)="toggleUserDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-people-fill me-2"></i>User Management</span>
+                <i class="bi" [ngClass]="{'bi-chevron-down': !showUserDropdown, 'bi-chevron-up': showUserDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showUserDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/registration" class="nav-link">
+                            <i class="bi bi-file-plus me-2"></i> User Registration
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Company Management -->
+        <li class="nav-item">
+            <button (click)="toggleCompanyDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-building me-2"></i>Company Management</span>
+                <i class="bi"
+                    [ngClass]="{'bi-chevron-down': !showCompanyDropdown, 'bi-chevron-up': showCompanyDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showCompanyDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/company-list" class="nav-link">
+                            <i class="bi bi-archive-fill me-2"></i> Company List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/add-company" class="nav-link">
+                            <i class="bi bi-file-plus me-2"></i> Add Company
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- CPO Management -->
+        <li class="nav-item">
+            <button (click)="toggleCpoDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#cpoSection" aria-expanded="false"
+                aria-controls="cpoSection">
+                <span><i class="bi bi-currency-bitcoin"></i> CPO Management
+                </span>
+                <i class="bi" [ngClass]="{'bi-chevron-down': !showCpoDropdown, 'bi-chevron-up': showCpoDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showCpoDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/cpo-list" class="nav-link">
+                            <i class="bi bi-archive-fill"></i> CPO List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/add-cpo" class="nav-link">
+                            <i class="bi bi-file-plus"></i> Add CPO
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Auction Management -->
+        <li class="nav-item">
+            <button (click)="toggleAuctionDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#auctionSection" aria-expanded="false"
+                aria-controls="auctionSection">
+                <span><i class="bi bi-dice-5"></i> Auction Management
+                </span><i class="bi"
+                    [ngClass]="{'bi-chevron-down': !showAuctionDropdown, 'bi-chevron-up': showAuctionDropdown}"></i>
+
+            </button>
+            <div class="dropdown" *ngIf="showAuctionDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/auction-list" class="nav-link">
+                            <i class="bi bi-archive-fill"></i> Auction List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/add-auction" class="nav-link">
+                            <i class="bi bi-file-plus"></i> Add Auction
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Sample Management -->
+        <li class="nav-item">
+            <button (click)="toggleSampleDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#sampleSection" aria-expanded="false"
+                aria-controls="sampleSection">
+                <i class="bi bi-grid-fill"></i>Sample Management
+                <i class="bi"
+                    [ngClass]="{'bi-chevron-down': !showSampleDropdown, 'bi-chevron-up': showSampleDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showSampleDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/sample-list" class="nav-link">
+                            <i class="bi bi-archive-fill"></i> Sample List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/add-sample" class="nav-link">
+                            <i class="bi bi-file-plus"></i> Add Sample
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="nav flex-column" *ngIf="userRole==='USER'">
+        <!-- Dashboard Link -->
+        <li>
+            <button 
+                    class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center" >
+                <i class="bi bi-house-door-fill me-2"></i><a routerLink="/dashboard" style="font-size: larger; text-decoration: none;">DASHBOARD</a> 
+            </button>
+        </li>
+
+      
+
+        <!-- Company Management -->
+        <li class="nav-item">
+            <button (click)="toggleCompanyDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-building me-2"></i>Company Management</span>
+                <i class="bi"
+                    [ngClass]="{'bi-chevron-down': !showCompanyDropdown, 'bi-chevron-up': showCompanyDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showCompanyDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/company-list" class="nav-link">
+                            <i class="bi bi-archive-fill me-2"></i> Company List
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </li>
+
+        <!-- CPO Management -->
+        <li class="nav-item">
+            <button (click)="toggleCpoDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#cpoSection" aria-expanded="false"
+                aria-controls="cpoSection">
+                <span><i class="bi bi-currency-bitcoin"></i> CPO Management
+                </span>
+                <i class="bi" [ngClass]="{'bi-chevron-down': !showCpoDropdown, 'bi-chevron-up': showCpoDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showCpoDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/cpo-list" class="nav-link">
+                            <i class="bi bi-archive-fill"></i> CPO List
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </li>
+
+        <!-- Auction Management -->
+        <li class="nav-item">
+            <button (click)="toggleAuctionDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#auctionSection" aria-expanded="false"
+                aria-controls="auctionSection">
+                <span><i class="bi bi-dice-5"></i> Auction Management
+                </span><i class="bi"
+                    [ngClass]="{'bi-chevron-down': !showAuctionDropdown, 'bi-chevron-up': showAuctionDropdown}"></i>
+
+            </button>
+            <div class="dropdown" *ngIf="showAuctionDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/auction-list" class="nav-link">
+                            <i class="bi bi-archive-fill"></i> Auction List
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </li>
+
+        <!-- Sample Management -->
+        <li class="nav-item">
+            <button (click)="toggleSampleDropdown()"
+                class="btn btn-link text-dark text-start w-100 d-flex justify-content-between align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#sampleSection" aria-expanded="false"
+                aria-controls="sampleSection">
+                <i class="bi bi-grid-fill"></i>Sample Management
+                <i class="bi"
+                    [ngClass]="{'bi-chevron-down': !showSampleDropdown, 'bi-chevron-up': showSampleDropdown}"></i>
+            </button>
+            <div class="dropdown" *ngIf="showSampleDropdown">
+                <ul class="nav flex-column ms-3">
+                    <li class="nav-item">
+                        <a routerLink="/sample-list" class="nav-link">
+                            <i class="bi bi-archive-fill"></i> Sample List
+                        </a>
+                    </li>
+                  
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

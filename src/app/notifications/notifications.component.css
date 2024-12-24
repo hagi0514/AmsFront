@@ -1,0 +1,24 @@
+.notifications-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.notification-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #f9f9f9;
+}
+
+.notification-card h3 {
+  margin: 0 0 8px;
+}
+
+.actions {
+  margin-top: 12px;
+}
+
+.actions button {
+  margin-right: 8px;
+}

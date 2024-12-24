@@ -1,0 +1,85 @@
+<!-- <ngx-spinner type="ball-climbing-dot">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner> -->
+<main id="main" class="main">
+  <div class="pagetitle">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door"></i></a></li>
+        <li class="breadcrumb-item active">Cpo List</li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+<div class="mat-table-container">
+    <table mat-table [dataSource]="dataSource" matSort class="smat-elevation-z8">
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef=" let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+  
+     
+     <!-- Company Column -->
+     <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+      <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+    </ng-container>
+
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      </ng-container>
+      
+   
+  
+   <!-- Bank Name Column -->
+   <ng-container matColumnDef="bank">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Bank </th>
+    <td mat-cell *matCellDef="let element"> {{element.bank}} </td>
+  </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <!-- Issuing Payment Column -->
+      <ng-container matColumnDef="issuing_payment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bank Payment </th>
+        <td mat-cell *matCellDef="let element"> {{element.issuing_payment}} </td>
+      </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button class="btn btn-info" (click)="updateElement(element.id)">Update</button>
+        </td>
+      </ng-container>
+    
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button class="btn btn-danger"  (click)="deleteElement(element.id, element)">Delete</button>
+        </td>
+      </ng-container>
+      
+  
+  
+      <!-- Header Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+      <!-- Data Rows -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  
