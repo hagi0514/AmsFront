@@ -32,12 +32,12 @@ export class NotificationService {
       Authorization: `Bearer ${token}`
     });
   
-    return this.http.get(`${this.apiUrl}/notification`, { headers });}
+  return this.http.get(`${this.apiUrl}/notification`, { headers });}
   
 
   dismissNotification(notificationId: number): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/dismisNotification/${notificationId}`, {});
-  }
+  }oo;o
   markAsRead(notificationId: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/${notificationId}/mark-as-read`, {});
   }

@@ -6,7 +6,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
 import $ from "jquery";
 import { filter, Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
-import { SqliteService } from './services/mobile/sqlite.service';
+// import { SqliteService } from './services/mobile/sqlite.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +18,10 @@ export class AppComponent implements AfterViewInit,OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
-  constructor( public location: Location, private router: Router,private authService:AuthService,private sqliteService: SqliteService) {}
+  constructor( public location: Location, 
+    private router: Router,private authService:AuthService,
+    // private sqliteService: SqliteService
+) {}
 
   async ngOnInit() {
     // if (this.authService.isLoggedIn()) {
@@ -38,8 +41,8 @@ export class AppComponent implements AfterViewInit,OnInit {
 //       this.authService.startTokenExpirationMonitor();
 //     }
 //   }
-await this.sqliteService.initializeDatabase();
-await this.sqliteService.createTable();
+// await this.sqliteService.initializeDatabase();
+// await this.sqliteService.createTable();
     
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
@@ -76,7 +79,6 @@ await this.sqliteService.createTable();
           let ps = new PerfectScrollbar(elemMainPanel);
           ps = new PerfectScrollbar(elemSidebar);
       }
-
       const window_width = $(window).width();
       let $sidebar = $('.sidebar');
       let $sidebar_responsive = $('body > .navbar-collapse');

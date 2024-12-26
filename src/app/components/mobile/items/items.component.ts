@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SqliteService } from 'app/services/mobile/sqlite.service';
+// import { SqliteService } from 'app/services/mobile/sqlite.service';
 
 @Component({
   selector: 'app-items',
@@ -9,15 +9,15 @@ import { SqliteService } from 'app/services/mobile/sqlite.service';
 export class ItemsComponent {
   items: any[] = [];
 
-  constructor(private sqliteService: SqliteService) {}
+  // constructor(private sqliteService: SqliteService) {}
 
   async addItem(name: string, description: string) {
-    await this.sqliteService.insertData(name, description);
+    // await this.sqliteService.insertData(name, description);
     this.loadItems();
   }
 
   async loadItems() {
-    this.items = await this.sqliteService.fetchData();
+    // this.items = await this.sqliteService.fetchData();
   }
 
   async ngOnInit() {

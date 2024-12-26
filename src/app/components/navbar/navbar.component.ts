@@ -116,25 +116,21 @@ export class NavbarComponent implements OnInit,OnDestroy {
   
   
     onMouseOverButton() {
-      console.log('Mouse over button');
       this.isMouseOverButton = true;
       this.showDropdown = true;
     }
   
     onMouseOutButton() {
-      console.log('Mouse out button');
       this.isMouseOverButton = false;
       this.onMouseOut();
     }
   
     onMouseOverDropdown() {
-      console.log('Mouse over dropdown');
       this.isMouseOverDropdown = true;
       this.showDropdown = true;
     }
   
     onMouseOutDropdown() {
-      console.log('Mouse out dropdown');
       this.isMouseOverDropdown = false;
       this.onMouseOut();
     }
@@ -142,7 +138,6 @@ export class NavbarComponent implements OnInit,OnDestroy {
     onMouseOut() {
       setTimeout(() => {
         if (!this.isMouseOverDropdown && !this.isMouseOverButton) {
-          console.log('Hiding dropdown');
           this.showDropdown = false;
         }
       }, 200); // Slight delay to handle transitions smoothly
@@ -150,7 +145,6 @@ export class NavbarComponent implements OnInit,OnDestroy {
   
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
-      console.log('Dropdown toggled:', this.showDropdown);
     }
      
     isMouseOverProfileDropdown = false;
@@ -158,25 +152,21 @@ export class NavbarComponent implements OnInit,OnDestroy {
     
   
     onMouseOverProfileButton() {
-      console.log('Mouse over button');
       this.isMouseOverProfileButton = true;
       this.showProfileDropdown = true;
     }
   
     onMouseOutProfileButton() {
-      console.log('Mouse out button');
       this.isMouseOverProfileButton = false;
       this.onMouseProfileOut();
     }
   
     onMouseOverProfileDropdown() {
-      console.log('Mouse over dropdown');
       this.isMouseOverProfileDropdown = true;
       this.showProfileDropdown = true;
     }
   
     onMouseOutProfileDropdown() {
-      console.log('Mouse out dropdown');
       this.isMouseOverProfileDropdown = false;
       this.onMouseProfileOut();
     }
@@ -184,7 +174,6 @@ export class NavbarComponent implements OnInit,OnDestroy {
     onMouseProfileOut() {
       setTimeout(() => {
         if (!this.isMouseOverProfileDropdown && !this.isMouseOverProfileButton) {
-          console.log('Hiding dropdown');
           this.showProfileDropdown = false;
         }
       }, 200); // Slight delay to handle transitions smoothly
@@ -192,7 +181,6 @@ export class NavbarComponent implements OnInit,OnDestroy {
   
     toggleProfileDropdown() {
       this.showProfileDropdown = !this.showProfileDropdown;
-      console.log('Dropdown toggled:', this.showProfileDropdown);
     }
   
   
